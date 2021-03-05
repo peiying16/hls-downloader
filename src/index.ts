@@ -49,7 +49,7 @@ export async function download(config: IConfig): Promise<void> {
     await chunksDownloader.start();
 
     // Get all segments
-    const segments = fs.readdirSync(segmentsDir).map((f) => segmentsDir + f);
+    const segments = fs.readdirSync(segmentsDir).map((f) => path.join(segmentsDir, f));
     segments.sort();
 
     // Merge TS files
