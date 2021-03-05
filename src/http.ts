@@ -9,8 +9,8 @@ export async function get(url: string, headers?: HttpHeaders): Promise<string> {
 }
 
 export async function download(url: string, file: string, headers?: HttpHeaders): Promise<void> {
-    return new Promise((resolve, reject) => {
-        const fn = async () => {
+    return new Promise((resolve) => {
+        async function fn (): Promise<void> {
             const response = await axios(url, { responseType: "stream", headers });
             const stream = response.data.pipe(fs.createWriteStream(file));
             stream.on("finish", resolve);
